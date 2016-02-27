@@ -1,9 +1,6 @@
 package com.nonosoft.vbank.models;
 
 import javax.persistence.*;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 
 @MappedSuperclass
 public abstract class Model {

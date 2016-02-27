@@ -25,11 +25,11 @@ public class AccountController {
     @RequestMapping(method = POST)
     public ResponseEntity<Void> create(@RequestBody CreateAccountRequest request) {
         service.create(request.getCode());
-        return new ResponseEntity<Void>(OK);
+        return new ResponseEntity<>(OK);
     }
 
     @RequestMapping(value = "/pages/{page}", method = GET)
-    public ResponseEntity<List<Account>> all(@PathVariable Integer page) throws Exception {
+    public ResponseEntity<List<Account>> pages(@PathVariable Integer page) {
         return ResponseUtils.toPageResponse(service.findByPage(page));
     }
 
