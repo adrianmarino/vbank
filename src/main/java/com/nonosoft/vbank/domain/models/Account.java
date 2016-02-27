@@ -1,4 +1,4 @@
-package com.nonosoft.vbank.models;
+package com.nonosoft.vbank.domain.models;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

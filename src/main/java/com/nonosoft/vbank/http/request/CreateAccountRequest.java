@@ -1,4 +1,4 @@
-package com.nonosoft.vbank.rest.request;
+package com.nonosoft.vbank.http.request;
 
 public class CreateAccountRequest {
 

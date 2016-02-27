@@ -7,7 +7,7 @@ targetCompatibility = 1.8
 // applicationDefaultJvmArgs = [ "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005" ]
 
 jar {
-  baseName = 'gs-rest-service'
+  baseName = 'gs-http-service'
   version =  '0.1.0'
 }
 
@@ -39,7 +39,7 @@ dependencies {
   compile("org.springframework.boot:spring-boot-starter-data-jpa")
   compile("mysql:mysql-connector-java")
   compile("org.springframework.boot:spring-boot-starter-jetty")
-  compile("cz.jirutka.spring:spring-rest-exception-handler:1.1.1")
+  compile("cz.jirutka.spring:spring-http-exception-handler:1.1.1")
 
   testCompile("junit:junit")
 

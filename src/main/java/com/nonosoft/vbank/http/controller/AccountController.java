@@ -1,9 +1,9 @@
-package com.nonosoft.vbank.rest.controller;
+package com.nonosoft.vbank.http.controller;
 
-import com.nonosoft.vbank.models.Account;
-import com.nonosoft.vbank.rest.ResponseUtils;
-import com.nonosoft.vbank.rest.request.CreateAccountRequest;
-import com.nonosoft.vbank.services.AccountCrudService;
+import com.nonosoft.vbank.domain.models.Account;
+import com.nonosoft.vbank.http.response.ResponseUtils;
+import com.nonosoft.vbank.http.request.CreateAccountRequest;
+import com.nonosoft.vbank.domain.services.AccountCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.nonosoft.vbank.rest;
+package com.nonosoft.vbank.http.response;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;

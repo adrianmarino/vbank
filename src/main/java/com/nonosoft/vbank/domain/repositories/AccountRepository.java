@@ -1,6 +1,6 @@
-package com.nonosoft.vbank.repositories;
+package com.nonosoft.vbank.domain.repositories;
 
-import com.nonosoft.vbank.models.Account;
+import com.nonosoft.vbank.domain.models.Account;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;

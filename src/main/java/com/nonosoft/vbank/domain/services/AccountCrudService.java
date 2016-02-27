@@ -1,7 +1,7 @@
-package com.nonosoft.vbank.services;
+package com.nonosoft.vbank.domain.services;
 
-import com.nonosoft.vbank.models.Account;
-import com.nonosoft.vbank.repositories.AccountRepository;
+import com.nonosoft.vbank.domain.models.Account;
+import com.nonosoft.vbank.domain.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
