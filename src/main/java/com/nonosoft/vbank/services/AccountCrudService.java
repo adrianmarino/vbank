@@ -14,7 +14,7 @@ public class AccountCrudService {
         return repository.save(new Account(code));
     }
 
-    public Page<Account> all(Integer page) {
+    public Page<Account> findByPage(Integer page) {
         return repository.findAll(new PageRequest(page, SIZE));
     }
 

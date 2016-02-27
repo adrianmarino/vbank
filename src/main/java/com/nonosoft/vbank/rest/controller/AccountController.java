@@ -6,7 +6,6 @@ import com.nonosoft.vbank.rest.request.CreateAccountRequest;
 import com.nonosoft.vbank.services.AccountCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +30,7 @@ public class AccountController {
 
     @RequestMapping(value = "/pages/{page}", method = GET)
     public ResponseEntity<List<Account>> all(@PathVariable Integer page) throws Exception {
-        return ResponseUtils.toPageResponse(service.all(page));
+        return ResponseUtils.toPageResponse(service.findByPage(page));
     }
 
     @Autowired

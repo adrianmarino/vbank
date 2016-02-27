@@ -10,7 +10,7 @@ public class ResponseUtils {
 
     public static <ENTITY> ResponseEntity<List<ENTITY>> toPageResponse(Page<ENTITY> page) {
         List<ENTITY> result = page.getContent();
-        return new ResponseEntity<List<ENTITY>>(result, result.isEmpty() ? NOT_FOUND: OK);
+        return new ResponseEntity<>(result, result.isEmpty() ? NOT_FOUND : OK);
     }
 
     private ResponseUtils() { }
