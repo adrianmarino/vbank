@@ -1,4 +1,4 @@
-package com.nonosoft.vbank.http.controller;
+package com.nonosoft.vbank.http.resources;
 
 import com.nonosoft.vbank.domain.models.Account;
 import com.nonosoft.vbank.http.response.ResponseUtils;
@@ -15,12 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 @RequestMapping("/accounts")
-public class AccountController {
+public class AccountResource {
+
+    @RequestMapping(value = "/pages/{page}")
+    public ResponseEntity<List<Account>> pages(@PathVariable Integer page) {
+        return ResponseUtils.toPageResponse(service.findByPage(page));
+    }
 
     @RequestMapping(method = POST)
     public ResponseEntity<Void> create(@RequestBody CreateAccountRequest request) {
@@ -28,9 +34,10 @@ public class AccountController {
         return new ResponseEntity<>(OK);
     }
 
-    @RequestMapping(value = "/pages/{page}", method = GET)
-    public ResponseEntity<List<Account>> pages(@PathVariable Integer page) {
-        return ResponseUtils.toPageResponse(service.findByPage(page));
+    @RequestMapping(value = "/{code}", method = DELETE)
+    public ResponseEntity<Void> remove(@PathVariable String code) {
+        service.remove(code);
+        return new ResponseEntity<>(OK);
     }
 
     @Autowired
