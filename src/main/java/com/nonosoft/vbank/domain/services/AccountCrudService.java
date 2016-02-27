@@ -22,6 +22,10 @@ public class AccountCrudService {
         repository.delete(repository.findByCode(code));
     }
 
+    public Account findByCode(String code) {
+        return repository.findByCode(code);
+    }
+
     private static final int SIZE = 20;
 
     @Autowired

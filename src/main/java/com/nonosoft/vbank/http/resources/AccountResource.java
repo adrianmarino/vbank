@@ -28,6 +28,11 @@ public class AccountResource {
         return ResponseUtils.toPageResponse(service.findByPage(page));
     }
 
+    @RequestMapping(value = "/{code}")
+    public ResponseEntity<Account> get(@PathVariable String code) {
+        return new ResponseEntity<>(service.findByCode(code), OK);
+    }
+
     @RequestMapping(method = POST)
     public ResponseEntity<Void> create(@RequestBody CreateAccountRequest request) {
         service.create(request.getCode());

@@ -11,6 +11,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface AccountRepository extends CrudRepository<Account, Long> {
     Account findByCode(String code);
-
     Page<Account> findAll(Pageable pageable);
 }
