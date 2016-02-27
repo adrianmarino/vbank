@@ -1,10 +1,13 @@
-apply plugin: 'java'
+apply plugin: 'groovy'
 apply plugin: 'spring-boot'
 apply plugin: 'application'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-// applicationDefaultJvmArgs = [ "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005" ]
+/*
+  User remove debuguer:
+  applicationDefaultJvmArgs = [ "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005" ]
+*/
 
 jar {
   baseName = 'gs-http-service'
@@ -30,18 +33,23 @@ buildscript {
   }
 }
 
-configurations {
-  compile.exclude module: "spring-boot-starter-tomcat"
-}
-
 dependencies {
-  compile("org.springframework.boot:spring-boot-starter-web")
-  compile("org.springframework.boot:spring-boot-starter-data-jpa")
-  compile("mysql:mysql-connector-java")
-  compile("org.springframework.boot:spring-boot-starter-jetty")
-  compile("cz.jirutka.spring:spring-http-exception-handler:1.1.1")
+  compile("org.springframework.boot:spring-boot-starter-web") {
+    exclude module: "spring-boot-starter-tomcat"
+  }
+  compile "org.springframework.boot:spring-boot-starter-jetty"
+  compile "cz.jirutka.spring:spring-rest-exception-handler:1.1.1"
+  compile "org.springframework.boot:spring-boot-starter-actuator"
 
-  testCompile("junit:junit")
+  compile "org.springframework.boot:spring-boot-starter-data-jpa"
+  compile "mysql:mysql-connector-java"
 
-  compile("org.springframework.boot:spring-boot-devtools")
+  compile "org.springframework.boot:spring-boot-devtools"
+
+  testCompile "org.springframework.boot:spring-boot-starter-test"
+  testCompile "org.springframework.boot:spring-boot-starter-web"
+  testCompile "org.springframework:spring-test"
+  testCompile "org.spockframework:spock-spring:1.0-groovy-2.4"
+  testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+  testCompile "org.codehaus.groovy:groovy-all:2.4.6"
 }
