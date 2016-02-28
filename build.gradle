@@ -1,17 +1,23 @@
 apply plugin: 'groovy'
 apply plugin: 'spring-boot'
 apply plugin: 'application'
+apply plugin: 'war'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-/*
-  User remove debuguer:
-  applicationDefaultJvmArgs = [ "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005" ]
-*/
 
 jar {
-  baseName = 'gs-http-service'
-  version =  '0.1.0'
+  baseName = 'vbank'
+  version =  '0.0.1'
+}
+
+war {
+  baseName = 'vbank'
+  version =  '0.0.1'
+}
+
+configurations {
+  providedRuntime
 }
 
 bootRun { addResources = true }
@@ -37,6 +43,7 @@ dependencies {
   compile("org.springframework.boot:spring-boot-starter-web") {
     exclude module: "spring-boot-starter-tomcat"
   }
+  providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
   compile(
     "org.springframework.boot:spring-boot-starter-jetty",
     "cz.jirutka.spring:spring-rest-exception-handler:1.1.1",
