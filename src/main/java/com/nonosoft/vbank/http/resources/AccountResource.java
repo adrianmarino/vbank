@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.OK;
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 @RequestMapping("/accounts")
@@ -28,6 +26,17 @@ public class AccountResource {
         return ResponseUtils.toPageResponse(service.findByPage(page));
     }
 
+    @RequestMapping(value = "/{code}")
+    public ResponseEntity<Account> read(@PathVariable String code) {
+        return new ResponseEntity<>(service.findByCode(code), OK);
+    }
+
+    @RequestMapping(value = "/{code}", method = PUT)
+    public ResponseEntity update(@PathVariable String code, @RequestBody CreateAccountRequest request) {
+        service.update(code, request.getCode());
+        return new ResponseEntity(OK);
+    }
+
     @RequestMapping(method = POST)
     public ResponseEntity<Void> create(@RequestBody CreateAccountRequest request) {
         service.create(request.getCode());
@@ -35,7 +44,7 @@ public class AccountResource {
     }
 
     @RequestMapping(value = "/{code}", method = DELETE)
-    public ResponseEntity<Void> remove(@PathVariable String code) {
+    public ResponseEntity<Void> delete(@PathVariable String code) {
         service.remove(code);
         return new ResponseEntity<>(OK);
     }

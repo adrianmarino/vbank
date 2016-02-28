@@ -1,8 +1,11 @@
 package com.nonosoft.vbank.domain.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @MappedSuperclass
+@JsonIgnoreProperties({"id"})
 public abstract class Model {
 
     @Id
