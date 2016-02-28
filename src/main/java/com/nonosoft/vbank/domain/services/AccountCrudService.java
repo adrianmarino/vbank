@@ -26,8 +26,15 @@ public class AccountCrudService {
         return repository.findByCode(code);
     }
 
+    public void update(String code, String newCode) {
+        Account account = findByCode(code);
+        account.setCode(newCode);
+        repository.save(account);
+    }
+
     private static final int SIZE = 20;
 
     @Autowired
     private AccountRepository repository;
+
 }

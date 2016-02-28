@@ -14,7 +14,5 @@ import spock.lang.Stepwise
 @IntegrationTest("server.port:8000")
 @Stepwise
 class ResourceSpec extends Specification {
-
-    def client  = new VBankClient('localhost', 8000)
-
+    def client = new VBankClient('localhost', 8000)
 }

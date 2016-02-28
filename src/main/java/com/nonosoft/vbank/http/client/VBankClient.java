@@ -5,19 +5,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import static java.lang.String.format;
 
-/**
- * Created by adrian on 2/28/16.
- */
 public class VBankClient {
+
+    public List<Account> accountsOnFirstPage() {
+        return accountsByPage(0);
+    }
 
     public List<Account> accountsByPage(Integer page) {
         ResponseEntity<Account[]> response = template.getForEntity(
-            format("%s/accounts/%s", baseUrl, page),
+            format("%s/accounts/pages/%s", baseUrl, page),
             Account[].class
         );
         return Arrays.asList(response.getBody());
@@ -25,6 +25,10 @@ public class VBankClient {
 
     public Account accountByCode(String code) {
         return template.getForObject(format("%s/accounts/%s", baseUrl, code), Account.class);
+    }
+
+    public void updateAccount(String code, String newCode) {
+        template.put(format("%s/accounts/%s", baseUrl, code), new Account(newCode));
     }
 
     public Account createAccount(String code) {
