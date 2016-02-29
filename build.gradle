@@ -1,66 +1,46 @@
 apply plugin: 'groovy'
 apply plugin: 'spring-boot'
 apply plugin: 'application'
-apply plugin: 'war'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+if (!project.hasProperty('env')) ext.env = 'dev'
+println "Environment: ${env}"
+apply from: "gradle/${env}-env.gradle"
 
-jar {
-  baseName = 'vbank'
-  version =  '0.0.1'
+bootRun {
+  addResources = true
+  jvmArgs "-Dspring.profiles.active=${env}"
 }
 
-war {
-  baseName = 'vbank'
-  version =  '0.0.1'
+ext {
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
 }
 
-configurations {
-  providedRuntime
-}
+task wrapper(type: Wrapper) { gradleVersion = '2.3.9' }
 
-bootRun { addResources = true }
-
-task wrapper(type: Wrapper) {
-  gradleVersion = '2.3'
-}
-
-repositories {
-  mavenCentral()
-}
+repositories { mavenCentral() }
 
 buildscript {
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.2.RELEASE")
-  }
+  ext { springBootVersion = '1.3.2.RELEASE' }
+  repositories { mavenCentral() }
+  dependencies { classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") }
 }
 
 dependencies {
-  compile("org.springframework.boot:spring-boot-starter-web") {
-    exclude module: "spring-boot-starter-tomcat"
-  }
-  providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
   compile(
-    "org.springframework.boot:spring-boot-starter-jetty",
-    "cz.jirutka.spring:spring-rest-exception-handler:1.1.1",
-    "org.springframework.boot:spring-boot-starter-actuator",
-    "org.springframework:spring-tx",
-    "org.springframework.boot:spring-boot-starter-data-jpa",
-    "mysql:mysql-connector-java",
-    "org.springframework.boot:spring-boot-devtools"
+      "cz.jirutka.spring:spring-rest-exception-handler:1.1.1",
+      "org.springframework:spring-tx",
+      "org.springframework.boot:spring-boot-starter-data-jpa",
+      "mysql:mysql-connector-java",
+      "org.apache.commons:commons-lang3:3.4"
   )
 
   testCompile(
-    "org.springframework.boot:spring-boot-starter-test"  ,
-    "org.springframework.boot:spring-boot-starter-web" ,
-    "org.springframework:spring-test"  ,
-    "org.spockframework:spock-spring:1.0-groovy-2.4" ,
-    "org.spockframework:spock-core:1.0-groovy-2.4" ,
-    "org.codehaus.groovy:groovy-all:2.4.6" ,
-    "org.codehaus.groovy.modules.http-builder:http-builder:0.7.1"
+      "org.springframework.boot:spring-boot-starter-web",
+      "org.springframework.boot:spring-boot-starter-test",
+      "org.springframework:spring-test",
+      "org.spockframework:spock-spring:1.0-groovy-2.4",
+      "org.spockframework:spock-core:1.0-groovy-2.4",
+      "org.codehaus.groovy:groovy-all:2.4.6"
   )
 }

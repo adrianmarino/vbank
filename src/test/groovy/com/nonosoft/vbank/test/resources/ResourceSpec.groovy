@@ -17,7 +17,10 @@ import spock.lang.Unroll
 @Stepwise
 @Unroll
 class ResourceSpec extends Specification {
-    static final HOSTNAME = 'localhost'
-    static final PORT = 8000
-    @Shared def client = new VBankClient(HOSTNAME, PORT)
+  static final HOSTNAME = 'localhost'
+  static final PORT = 8000
+  @Shared
+  def client = new VBankClient(HOSTNAME, PORT)
+
+  static { System.setProperty("spring.profiles.active", "test") }
 }

@@ -21,34 +21,34 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RequestMapping("/accounts")
 public class AccountResource {
 
-    @RequestMapping(value = "/pages/{page}")
-    public ResponseEntity<List<Account>> pages(@PathVariable Integer page) {
-        return ResponseUtils.toPageResponse(service.findByPage(page));
-    }
+  @RequestMapping(value = "/pages/{page}")
+  public ResponseEntity<List<Account>> pages(@PathVariable Integer page) {
+    return ResponseUtils.toPageResponse(service.findByPage(page));
+  }
 
-    @RequestMapping(value = "/{code}")
-    public ResponseEntity<Account> read(@PathVariable String code) {
-        return new ResponseEntity<>(service.findByCode(code), OK);
-    }
+  @RequestMapping(value = "/{code}")
+  public ResponseEntity<Account> read(@PathVariable String code) {
+    return new ResponseEntity<>(service.findByCode(code), OK);
+  }
 
-    @RequestMapping(value = "/{code}", method = PUT)
-    public ResponseEntity update(@PathVariable String code, @RequestBody CreateAccountRequest request) {
-        service.update(code, request.getCode());
-        return new ResponseEntity(OK);
-    }
+  @RequestMapping(value = "/{code}", method = PUT)
+  public ResponseEntity update(@PathVariable String code, @RequestBody CreateAccountRequest request) {
+    service.update(code, request.getCode());
+    return new ResponseEntity(OK);
+  }
 
-    @RequestMapping(method = POST)
-    public ResponseEntity<Void> create(@RequestBody CreateAccountRequest request) {
-        service.create(request.getCode());
-        return new ResponseEntity<>(OK);
-    }
+  @RequestMapping(method = POST)
+  public ResponseEntity<Void> create(@RequestBody CreateAccountRequest request) {
+    service.create(request.getCode());
+    return new ResponseEntity<>(OK);
+  }
 
-    @RequestMapping(value = "/{code}", method = DELETE)
-    public ResponseEntity<Void> delete(@PathVariable String code) {
-        service.remove(code);
-        return new ResponseEntity<>(OK);
-    }
+  @RequestMapping(value = "/{code}", method = DELETE)
+  public ResponseEntity<Void> delete(@PathVariable String code) {
+    service.remove(code);
+    return new ResponseEntity<>(OK);
+  }
 
-    @Autowired
-    private AccountCrudService service;
+  @Autowired
+  private AccountCrudService service;
 }

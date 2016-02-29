@@ -1,0 +1,20 @@
+apply plugin: 'war'
+
+war {
+  baseName = 'vbank'
+  version = '0.0.1'
+}
+
+repositories {
+  jcenter()
+  maven { url "http://repo.spring.io/libs-snapshot" }
+}
+
+configurations {
+  providedRuntime
+}
+
+dependencies {
+  compile("org.springframework.boot:spring-boot-starter-web")
+  providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+}
