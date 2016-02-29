@@ -4,21 +4,26 @@ spring:
     username: vbank
     password: 1234
   jpa:
-    hibernate:
-      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+    hibernate.naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+---
+
+spring:
+  profiles: test, dev
+  jpa:
+    show-sql: true
+    hibernate.ddl-auto: update
+---
+
+spring:
+  profiles: test
+  datasource.url: jdbc:mysql://localhost/vbank_test
+
 ---
 
 spring:
   profiles: dev
-  datasource:
-    url: jdbc:mysql://localhost/vbank_dev
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
+  datasource.url: jdbc:mysql://localhost/vbank_dev
 ---
 
 spring:
@@ -27,17 +32,4 @@ spring:
     url: jdbc:mysql://localhost/vbank_prod
     testWhileIdle: true
     validationQuery: SELECT 1
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
----
 
-spring:
-  profiles: test
-  datasource:
-    url: jdbc:mysql://localhost/vbank_test
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
