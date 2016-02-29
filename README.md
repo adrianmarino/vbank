@@ -7,19 +7,19 @@ Create db for each envinronmenr (dev, test and prod)
 mysql -u root -p <  db/setup_schema.sql
 ```
 
-2. Run test
+## Run test
 Run test using test db.
 ```bash
 gradle test
 ```
 
-3. Start app (env: dev)
+## Start app (env: dev)
 Run app using dev db.
 ```bash
 gradle bootRun
 ```
 
-3. Generate production war
+## Generate production war
 ```bash
 gradle war -Penv=prod
 ```
