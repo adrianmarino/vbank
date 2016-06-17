@@ -1,7 +1,7 @@
 # VBank
 
 ## Setup
-Create db for each envinronmenr (dev, test and prod)
+Create db for each envinronment (dev/test/prod)
 
 ```bash
 mysql -u root -p <  db/setup_schema.sql
