@@ -7,8 +7,8 @@ Create db for each environment (dev/test/prod)
 mysql -u root -p <  db/setup_schema.sql
 ```
 
-## Run test
-Run test using test db.
+## Run tests
+Run tests using a test db.
 ```bash
 gradle test
 ```
